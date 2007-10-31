@@ -518,6 +518,7 @@ if __name__ == '__main__':
 
     exitStatus = 0
     killOrphans = 1
+    os.environ["LD_PRELOAD"] = LIBDIR+"/libselinux-mock.so"
 
     try:
         # sneaky way to ensure that we get passed back parameter even if
