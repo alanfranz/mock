@@ -521,6 +521,8 @@ if __name__ == '__main__':
     killOrphans = 1
     os.environ["LD_PRELOAD"] = LIBDIR+"/libselinux-mock.so"
 
+    os.environ["LD_PRELOAD"] = LIBDIR+"/libselinux-mock.so"
+
     try:
         # sneaky way to ensure that we get passed back parameter even if
         # we hit an exception.
