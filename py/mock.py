@@ -44,6 +44,7 @@ __VERSION__ = "unreleased_version"
 SYSCONFDIR = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), "..", "etc")
 PYTHONDIR = os.path.dirname(os.path.realpath(sys.argv[0]))
 PKGPYTHONDIR = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), "mock")
+LIBDIR = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])),"..","src",".libs")
 MOCKCONFDIR = os.path.join(SYSCONFDIR, "mock")
 LIBDIR=os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])),"..","src",".libs")
 # end build system subs
