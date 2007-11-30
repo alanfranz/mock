@@ -45,6 +45,7 @@ SYSCONFDIR = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), "..", 
 PYTHONDIR = os.path.dirname(os.path.realpath(sys.argv[0]))
 PKGPYTHONDIR = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), "mock")
 MOCKCONFDIR = os.path.join(SYSCONFDIR, "mock")
+LIBDIR=os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])),"..","src",".libs")
 # end build system subs
 
 # import all mock.* modules after this.
