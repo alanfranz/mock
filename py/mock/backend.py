@@ -465,7 +465,9 @@ class Root(object):
         output = ""
         try:
             self._callHooks("preyum")
+            saveLdPreload = os.environ.get("LD_PRELOAD", "")
             output = mock.util.do(cmd, returnOutput=returnOutput, personality=self.personality)
+            os.environ["LD_PRELOAD"] = saveLdPreload
             self._callHooks("postyum")
             return output
         except mock.exception.Error, e:
