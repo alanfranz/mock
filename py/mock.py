@@ -310,6 +310,7 @@ def do_rebuild(config_opts, chroot, srpms):
         pass
 
     start = time.time()
+    os.environ["LD_PRELOAD"] = LIBDIR+"/libselinux-mock.so"
     try:
         for srpm in srpms:
             start = time.time()
@@ -454,6 +455,7 @@ def main(ret):
         log.info("Namespace unshare failed.")
 
     if options.mode == 'init':
+        os.environ["LD_PRELOAD"] = LIBDIR+"/libselinux-mock.so"
         if config_opts['clean']:
             chroot.clean()
         chroot.init()
@@ -520,8 +522,6 @@ if __name__ == '__main__':
 
     exitStatus = 0
     killOrphans = 1
-    os.environ["LD_PRELOAD"] = LIBDIR+"/libselinux-mock.so"
-
     os.environ["LD_PRELOAD"] = LIBDIR+"/libselinux-mock.so"
 
     try:
