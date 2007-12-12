@@ -46,7 +46,6 @@ PYTHONDIR = os.path.dirname(os.path.realpath(sys.argv[0]))
 PKGPYTHONDIR = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), "mock")
 LIBDIR = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])),"..","src",".libs")
 MOCKCONFDIR = os.path.join(SYSCONFDIR, "mock")
-LIBDIR=os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])),"..","src",".libs")
 # end build system subs
 
 # import all mock.* modules after this.
@@ -522,7 +521,6 @@ if __name__ == '__main__':
 
     exitStatus = 0
     killOrphans = 1
-    os.environ["LD_PRELOAD"] = LIBDIR+"/libselinux-mock.so"
 
     try:
         # sneaky way to ensure that we get passed back parameter even if
