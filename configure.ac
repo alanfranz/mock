@@ -20,6 +20,8 @@ AM_MAINTAINER_MODE
 
 # Checks for programs.
 AC_PROG_INSTALL
+AC_PROG_LIBTOOL
+AC_PROG_CC
 
 # automake macros
 AM_PATH_PYTHON

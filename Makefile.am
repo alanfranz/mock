@@ -23,7 +23,13 @@ $(TESTS): srpm
 
 EXTRA_DIST =
 bin_PROGRAMS=
-CLEANFILES += $(EXTRA_PROGRAMS)
+
+AM_CFLAGS = -Wall -I$(top_srcdir)/src -DSYSCONFDIR='"$(sysconfdir)"' -DLIBEXECDIR='"$(libexecdir)"' -DLIBDIR='"$(libdir)"' -Werror
+
+lib_LTLIBRARIES = src/libselinux-mock.la
+src_libselinux_mock_la_LDFLAGS = -version-info $(MOCK_LIBTOOL_CURRENT):$(MOCK_LIBTOOL_REVISION):$(MOCK_LIBTOOL_AGE)
+src_libselinux_mock_la_SOURCES = src/selinux-mock.c
+#src_libselinux_mock_la_CFLAGS =
 
 mocketcdir = $(sysconfdir)/mock
 mocketc_DATA = $(wildcard $(top_srcdir)/etc/mock/*.cfg) $(top_srcdir)/etc/mock/logging.ini

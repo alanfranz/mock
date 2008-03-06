@@ -46,6 +46,7 @@ __VERSION__ = "unreleased_version"
 SYSCONFDIR = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), "..", "etc")
 PYTHONDIR = os.path.dirname(os.path.realpath(sys.argv[0]))
 PKGPYTHONDIR = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), "mock")
+LIBDIR = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])),"..","src",".libs")
 MOCKCONFDIR = os.path.join(SYSCONFDIR, "mock")
 # end build system subs
 
@@ -351,6 +352,7 @@ def do_rebuild(config_opts, chroot, srpms):
         pass
 
     start = time.time()
+    os.environ["LD_PRELOAD"] = LIBDIR+"/libselinux-mock.so"
     try:
         for srpm in srpms:
             start = time.time()
@@ -478,6 +480,9 @@ def main(ret):
 
     # cmdline options override config options
     set_config_opts_per_cmdline(config_opts, options, args)
+    
+    # elevate privs
+    uidManager._becomeUser(0, 0)
 
     # elevate privs
     uidManager._becomeUser(0, 0)
@@ -510,6 +515,7 @@ def main(ret):
         mock.util.condPersonality(config_opts['target_arch'])
 
     if options.mode == 'init':
+        os.environ["LD_PRELOAD"] = LIBDIR+"/libselinux-mock.so"
         if config_opts['clean']:
             chroot.clean()
         chroot.init()
