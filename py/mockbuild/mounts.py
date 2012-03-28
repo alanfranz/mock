@@ -24,6 +24,10 @@ class MountPoint(object):
             return True
         return False
 
+    def __str__(self):
+        return "%s mounted on %s" % (self.mountsource, self.mountpath)
+
+
 class FileSystemMountPoint(MountPoint):
     '''class for managing filesystem mounts in the chroot'''
     decorate(traceLog())
@@ -44,6 +48,9 @@ class FileSystemMountPoint(MountPoint):
         self.options = options
         self.mounted = self.ismounted()
 
+    def __str__(self):
+        return "fsmount (%s on %s)" % (self.device, self.path)
+
     decorate(traceLog())
     def mount(self):
         if self.mounted:
@@ -53,11 +60,9 @@ class FileSystemMountPoint(MountPoint):
         if self.options:
             cmd += ['-o', self.options ]
         cmd += [self.device, self.path]
-        try:
-            mockbuild.util.do(cmd)
-        except mockbuild.exception.Error, e:
-            return False
+        mockbuild.util.do(cmd)
         self.mounted = True
+        print "mounted %s" % str(self)
         return True
 
     decorate(traceLog())
@@ -65,11 +70,9 @@ class FileSystemMountPoint(MountPoint):
         if not self.mounted:
             return
         cmd = ['/bin/umount', '-n', '-l', self.path]
-        try:
-            mockbuild.util.do(cmd)
-        except mockbuild.exception.Error, e:
-            return False
+        mockbuild.util.do(cmd)
         self.mounted = False
+        print "umounted %s" % str(self)
         return True
 
 class BindMountPoint(MountPoint):
@@ -81,6 +84,9 @@ class BindMountPoint(MountPoint):
         self.bindpath = bindpath
         self.mounted = self.ismounted()
 
+    def __str__(self):
+        return "bindmount (%s on %s)" % (self.srcpath, self.bindpath)
+
     decorate(traceLog())
     def mount(self):
         if not self.mounted:
@@ -91,6 +97,7 @@ class BindMountPoint(MountPoint):
             except mockbuild.exception.Error, e:
                 return False
         self.mounted = True
+        print "mounted %s" % str(self)
         return True
 
     decorate(traceLog())
@@ -102,6 +109,7 @@ class BindMountPoint(MountPoint):
             except mockbuild.exception.Error, e:
                 return False
         self.mounted = False
+        print "umounted %s" % str(self)
         return True
 
 class Mounts(object):
