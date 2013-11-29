@@ -1,2 +1,9 @@
 Mock creates chroots and builds packages in them. Its only task is to reliably populate a chroot and attempt to build a package in that chroot.
 
+Prerequisites:
+
+you need python rpm binding and rpmUtils (usually included in the yum package) 
+in order to work with this software. Those are not included in the python 
+setup since such bindings are usually strictly system related, and their
+distributions aren't available on pypi.
+
