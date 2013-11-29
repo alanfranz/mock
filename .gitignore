@@ -21,4 +21,6 @@ mock-unit-test
 patches
 bugzillas
 *.patch
-
+py/env
+py/tmp
+py/*.egg-info
