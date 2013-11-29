@@ -21,10 +21,4 @@ mock-unit-test
 patches
 bugzillas
 *.patch
-bin/
-local/
-include/
-lib/
-tmp/
-*.egg-info
 
