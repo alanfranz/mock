@@ -875,7 +875,7 @@ def main(ret):
     chroot.finish()
     chroot.alldone()
 
-if __name__ == '__main__':
+def cmdline_mock():
     # fix for python 2.4 logging module bug:
     logging.raiseExceptions = 0
 
@@ -930,6 +930,9 @@ if __name__ == '__main__':
 
     logging.shutdown()
     sys.exit(exitStatus)
+
+if __name__ == '__main__':
+    cmdline_mock()
 
 
 

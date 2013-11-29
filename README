@@ -1,0 +1,2 @@
+Mock creates chroots and builds packages in them. Its only task is to reliably populate a chroot and attempt to build a package in that chroot.
+
